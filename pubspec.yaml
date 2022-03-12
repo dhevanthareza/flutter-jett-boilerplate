@@ -38,7 +38,9 @@ dependencies:
   dio: ^4.0.4
   pretty_dio_logger: ^1.2.0-beta-1
   intl: ^0.17.0
-
+  get_storage: ^2.0.3
+  load: ^1.0.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
