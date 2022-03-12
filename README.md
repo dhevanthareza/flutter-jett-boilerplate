@@ -15,6 +15,9 @@ Basicly the flow call is go from view/page -> controller -> service -> repositor
 - Repository, use it for getting data from external data
 - External Data, use it for connecting to external resource data
 
+# Logging
+for easy reading please use Logger().v, Logger().d or anything else you can see on https://pub.dev/packages/logger
+
 # How to build
 1. To build dev app use `flutter build apk`
 2. To Build prod app use `flutter build appbundle`
