@@ -1,16 +1,10 @@
-# flutter_jett_boilerplate
+# Route
+we are using getx and you can read documentation on https://github.com/jonataslaw/getx/blob/master/documentation/id_ID/route_management.md
 
-A new Flutter project.
+# State Management
+we are using getx and you can read documentation on https://github.com/jonataslaw/getx/blob/master/documentation/id_ID/state_management.md
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to build
+1. To build dev app use `flutter build apk`
+2. To Build prod app use `flutter build appbundle`
+3. for play store deploymen maybe you need to read flutter documentation, for keying purpose
