@@ -6,13 +6,13 @@ class AppButton extends StatelessWidget {
   final double width;
   final Function() onPressed;
   final EdgeInsets margin;
-  const AppButton(
-      {Key? key,
-      required this.title,
-      this.width = double.infinity,
-      this.margin = EdgeInsets.zero,
-      required this.onPressed})
-      : super(key: key);
+  const AppButton({
+    Key? key,
+    required this.title,
+    this.width = double.infinity,
+    this.margin = EdgeInsets.zero,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
