@@ -14,7 +14,7 @@ class SplashPageController extends GetxController {
     Future.delayed(const Duration(milliseconds: 100), () {
       UserEntity? user = UserRepository.getSavedUser();
       if (user == null) {
-        Get.offAllNamed("/user/login");
+        Get.offAllNamed("/user/auth");
       } else {
         Get.offAllNamed("/home");
       }

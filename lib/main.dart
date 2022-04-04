@@ -24,15 +24,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        builder: (BuildContext context, dynamic child) {
-          return LoadingProvider(
-            child: child,
-            themeData: LoadingThemeData(tapDismiss: false),
-            loadingWidgetBuilder: (ctx, data) => Center(child: AppLoading()),
-          );
-        },
-        title: 'Jett Boilerplate',
-        initialRoute: '/',
-        getPages: Routes.routes);
+      builder: (BuildContext context, dynamic child) {
+        return LoadingProvider(
+          child: child,
+          themeData: LoadingThemeData(tapDismiss: false),
+          loadingWidgetBuilder: (ctx, data) => Center(child: AppLoading()),
+        );
+      },
+      title: 'Jett Boilerplate',
+      initialRoute: '/',
+      getPages: Routes.routes,
+    );
   }
 }
