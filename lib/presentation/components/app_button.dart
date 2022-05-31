@@ -24,15 +24,15 @@ class AppButton extends StatelessWidget {
         style: TextButton.styleFrom(
           backgroundColor: AppColor.primaryColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(25),
           ),
         ),
         child: Text(
           title,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.normal,
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
           ),
         ),
         onPressed: onPressed,

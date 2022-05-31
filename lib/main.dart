@@ -24,10 +24,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(fontFamily: 'poppins'),
       builder: (BuildContext context, dynamic child) {
         return LoadingProvider(
           child: child,
-          themeData: LoadingThemeData(tapDismiss: false),
+          themeData: LoadingThemeData(tapDismiss: false, ),
           loadingWidgetBuilder: (ctx, data) => Center(child: AppLoading()),
         );
       },

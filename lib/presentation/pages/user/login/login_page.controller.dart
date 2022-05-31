@@ -6,13 +6,14 @@ import 'package:get/get.dart';
 import 'package:load/load.dart';
 
 class LoginPageController extends GetxController {
-  final emailTextController = TextEditingController();
+  final memberNumberTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  bool showPassword = false;
 
   void login() async {
     showLoadingDialog();
     try {
-      await UserService.login(emailTextController.text, passwordTextController.text);
+      await UserService.login(memberNumberTextController.text, passwordTextController.text);
       Get.offAllNamed("/home");
       hideLoadingDialog();
     } on AppException catch (err) {
@@ -22,5 +23,11 @@ class LoginPageController extends GetxController {
       );
       hideLoadingDialog();
     }
+  }
+
+  void handleToogleShowPassword() {
+    showPassword = !showPassword;
+    print(showPassword);
+    update();
   }
 }
