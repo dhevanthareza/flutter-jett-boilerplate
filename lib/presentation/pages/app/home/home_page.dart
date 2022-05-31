@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_jett_boilerplate/presentation/pages/home/home_page.controller.dart';
+import 'package:flutter_jett_boilerplate/presentation/pages/app/home/home_page.controller.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {

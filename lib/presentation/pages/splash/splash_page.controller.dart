@@ -16,7 +16,7 @@ class SplashPageController extends GetxController {
       if (user == null) {
         Get.offAllNamed("/user/login");
       } else {
-        Get.offAllNamed("/home");
+        Get.offAllNamed("/app");
       }
     });
   }

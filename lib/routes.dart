@@ -1,4 +1,5 @@
-import 'package:flutter_jett_boilerplate/presentation/pages/home/home_page.dart';
+import 'package:flutter_jett_boilerplate/presentation/pages/app/app_page.dart';
+import 'package:flutter_jett_boilerplate/presentation/pages/app/home/home_page.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/user/auth_page.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +28,10 @@ class Routes {
     GetPage(
       name: '/user/auth',
       page: () => AuthPage(),
+    ),
+    GetPage(
+      name: '/app',
+      page: () => AppPage(),
     ),
   ];
 }

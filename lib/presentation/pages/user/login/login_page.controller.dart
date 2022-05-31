@@ -10,11 +10,11 @@ class LoginPageController extends GetxController {
   final passwordTextController = TextEditingController();
   bool showPassword = false;
 
-  void login() async {
+  void handlLogin() async {
     showLoadingDialog();
     try {
-      await UserService.login(memberNumberTextController.text, passwordTextController.text);
-      Get.offAllNamed("/home");
+      // await UserService.login(memberNumberTextController.text, passwordTextController.text);
+      Get.offAllNamed("/app");
       hideLoadingDialog();
     } on AppException catch (err) {
       Get.snackbar(
@@ -27,7 +27,6 @@ class LoginPageController extends GetxController {
 
   void handleToogleShowPassword() {
     showPassword = !showPassword;
-    print(showPassword);
     update();
   }
 }

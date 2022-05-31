@@ -94,7 +94,9 @@ class _LoginPageState extends State<LoginPage> {
                           TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
                     ),
                     const SizedBox(height: 29),
-                    AppButton(title: "Login", onPressed: () {})
+                    AppButton(title: "Login", onPressed: () {
+                      state.handlLogin();
+                    })
                   ],
                 ),
               ),

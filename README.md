@@ -22,3 +22,7 @@ for easy reading please use Logger().v, Logger().d or anything else you can see 
 1. To build dev app use `flutter build apk`
 2. To Build prod app use `flutter build appbundle`
 3. for play store deploymen maybe you need to read flutter documentation, for keying purpose
+
+# Navigation
+
+You can read https://github.com/jonataslaw/getx/blob/master/documentation/en_US/route_management.md for navigating on this app
