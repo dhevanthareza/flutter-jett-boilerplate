@@ -6,14 +6,9 @@ import 'package:get/get.dart';
 
 import 'login_page.controller.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,9 +89,11 @@ class _LoginPageState extends State<LoginPage> {
                           TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
                     ),
                     const SizedBox(height: 29),
-                    AppButton(title: "Login", onPressed: () {
-                      state.handlLogin();
-                    })
+                    AppButton(
+                        title: "Login",
+                        onPressed: () {
+                          state.handlLogin();
+                        })
                   ],
                 ),
               ),
