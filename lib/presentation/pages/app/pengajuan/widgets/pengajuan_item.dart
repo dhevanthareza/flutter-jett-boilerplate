@@ -37,7 +37,7 @@ class PengajuanItem extends StatelessWidget {
                     children: [
                       Text(
                         "KTA",
-                        style: AppText.buttonHeder(color: Colors.white),
+                        style: AppText.buttonHeader(color: Colors.white),
                       ),
                       const Text(
                         "Kartu Tanda Anggota",

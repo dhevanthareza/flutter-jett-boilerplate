@@ -50,7 +50,7 @@ class AppText {
       color: color
     );
   }
-  static TextStyle buttonHeder({Color color = Colors.black}) {
+  static TextStyle buttonHeader({Color color = Colors.black}) {
     return TextStyle(
       fontWeight: FontWeight.w700,
       fontSize: 18,
