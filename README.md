@@ -26,3 +26,7 @@ for easy reading please use Logger().v, Logger().d or anything else you can see 
 # Navigation
 
 You can read https://github.com/jonataslaw/getx/blob/master/documentation/en_US/route_management.md for navigating on this app
+
+# Certificate
+Is CN=dhevan, OU=dinustek, O=dinustek, L=semarang, ST=jawa tengah, C=ID
+password dhevan007

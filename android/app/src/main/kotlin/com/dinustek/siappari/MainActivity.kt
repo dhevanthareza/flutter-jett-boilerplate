@@ -1,4 +1,4 @@
-package com.devlab.presenceapp
+package com.dinustek.siappari
 
 import io.flutter.embedding.android.FlutterActivity
 
