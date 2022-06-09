@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_jett_boilerplate/data/const/app_color.dart';
 import 'package:flutter_jett_boilerplate/data/const/app_text.dart';
+import 'package:flutter_jett_boilerplate/presentation/components/app_loading.dart';
+import 'package:flutter_jett_boilerplate/presentation/pages/app/event/detail/event_detail_page.controller.dart';
+import 'package:flutter_jett_boilerplate/presentation/pages/app/event/event_page.controller.dart';
+import 'package:get/get.dart';
 
 class EventDetailPage extends StatelessWidget {
   const EventDetailPage({Key? key}) : super(key: key);
@@ -22,20 +26,31 @@ class EventDetailPage extends StatelessWidget {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset(
-              "assets/images/sample_banner.png",
-              width: double.infinity,
-              height: 360,
-              fit: BoxFit.cover,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 17),
-              child: Text(sampleContent, style: AppText.titleSmall(),),
-            )
-          ],
+      body: GetBuilder<EventDetailPageController>(
+        init: EventDetailPageController(),
+        builder: (EventDetailPageController state) => SingleChildScrollView(
+          child: state.isFetching
+              ? Center(
+                  child: AppLoading(),
+                )
+              : Column(
+                  children: [
+                    Image.network(
+                      state.event!.pamflet!,
+                      width: double.infinity,
+                      height: 360,
+                      fit: BoxFit.cover,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 17),
+                      child: Text(
+                        sampleContent,
+                        style: AppText.titleSmall(),
+                      ),
+                    )
+                  ],
+                ),
         ),
       ),
     );

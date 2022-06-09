@@ -49,53 +49,56 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildHeader(HomePageController state) {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 15,
-          backgroundImage:
-              Image.asset("assets/images/sample_avatar.png", fit: BoxFit.cover)
-                  .image,
-        ),
-        const SizedBox(
-          width: 11,
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return state.isFetchingUser
+        ? SizedBox()
+        : Row(
             children: [
-              Text(
-                "3173101200598",
-                style: AppText.titleSmallBold(),
+              CircleAvatar(
+                radius: 15,
+                backgroundImage: Image.network(state.user!.foto!)
+                    .image,
               ),
-              Text(
-                "Darma Wilantara Setiawan",
-                style: AppText.titleSmallBold(
-                  color: const Color(0xFF222375),
+              const SizedBox(
+                width: 11,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      state.user!.noKta!,
+                      style: AppText.titleSmallBold(),
+                    ),
+                    Text(
+                      state.user!.nama!,
+                      style: AppText.titleSmallBold(
+                        color: const Color(0xFF222375),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              InkWell(
+                onTap: () {
+                  state.handleNotificationClick();
+                },
+                child: const Icon(Icons.mail_outline_rounded),
+              )
             ],
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            state.handleNotificationClick();
-          },
-          child: const Icon(Icons.mail_outline_rounded),
-        )
-      ],
-    );
+          );
   }
 
   Widget _buildSlider(HomePageController state) {
     return CarouselSlider(
-      items: !state.isFetchingSliders ? state.sliders
-          .map(
-            (SliderEntity slider) => SliderItem(
-              slider: slider,
-            ),
-          )
-          .toList() : [SliderItem.buildShimmer()],
+      items: !state.isFetchingSliders
+          ? state.sliders
+              .map(
+                (SliderEntity slider) => SliderItem(
+                  slider: slider,
+                ),
+              )
+              .toList()
+          : [SliderItem.buildShimmer()],
       options: CarouselOptions(
         aspectRatio: 263 / 111,
         initialPage: 0,

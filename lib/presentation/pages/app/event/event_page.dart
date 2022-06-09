@@ -27,7 +27,6 @@ class EventPage extends StatelessWidget {
                   style: AppText.titleBig(),
                 ),
                 AppLoadMore<EventPageController>(
-                  // isNeedInit: false,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   onTap: () {},

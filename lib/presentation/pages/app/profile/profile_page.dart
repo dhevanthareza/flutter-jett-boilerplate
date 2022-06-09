@@ -26,8 +26,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       CircleAvatar(
                         backgroundImage:
-                            Image.asset("assets/images/sample_avatar.png")
-                                .image,
+                            Image.network(state.userData!.foto!).image,
                         radius: 45,
                       ),
                       const SizedBox(
@@ -58,9 +57,18 @@ class ProfilePage extends StatelessWidget {
                         "EMAIL",
                         StringUtils.getOrElse(state.userData!.email, "-"),
                       ),
-                      _buildAttributeItem("STATUS PEGAWAI", StringUtils.getOrElse(state.userData!.statusPegawai, "-")),
-                      _buildAttributeItem("TEMPAT KERJA", StringUtils.getOrElse(state.userData!.tempatKerja, "-")),
-                      _buildAttributeItem("Pengcab", StringUtils.getOrElse(state.userData!.kotaBekerja, "-")),
+                      _buildAttributeItem(
+                          "STATUS PEGAWAI",
+                          StringUtils.getOrElse(
+                              state.userData!.statusPegawai, "-")),
+                      _buildAttributeItem(
+                          "TEMPAT KERJA",
+                          StringUtils.getOrElse(
+                              state.userData!.tempatKerja, "-")),
+                      _buildAttributeItem(
+                          "Pengcab",
+                          StringUtils.getOrElse(
+                              state.userData!.kotaBekerja, "-")),
                       const SizedBox(
                         height: 30,
                       ),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jett_boilerplate/domain/entities/invoice/invoice.entity.dart';
+import 'package:flutter_jett_boilerplate/utils/date_utils.dart';
+import 'package:flutter_jett_boilerplate/utils/string_utils.dart';
 
 import '../../../../../data/const/app_text.dart';
 
 class TagihanItem extends StatelessWidget {
-  const TagihanItem({Key? key}) : super(key: key);
+  final InvoiceEntity invoice;
+  const TagihanItem({Key? key, required this.invoice}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +17,14 @@ class TagihanItem extends StatelessWidget {
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: const Color(0xFFF9FFF7),
+        color:
+            invoice.isPaid == 1 ? const Color(0xFFF9FFF7) : Color(0xFFFFF4F4),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const  Offset(0, 10),
-            blurStyle: BlurStyle.normal
-          )
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, 10),
+              blurStyle: BlurStyle.normal)
         ],
       ),
       child: Row(
@@ -30,21 +34,25 @@ class TagihanItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "IURAN KEANGGOTAAN",
+                  StringUtils.getOrElse(invoice.uraian, ""),
                   style: AppText.titleSmallBold(),
                 ),
                 const SizedBox(
                   height: 11,
                 ),
                 Text(
-                  "20 DESEMBER 2021",
+                  invoice.expiredAt != null
+                      ? AppDateUtils.formatFromString(invoice.expiredAt)
+                      : "-",
                   style: AppText.titleSmall(),
                 ),
                 const SizedBox(
                   height: 6,
                 ),
                 Text(
-                  "Rp. 10.000",
+                  invoice.total != null
+                      ? StringUtils.toIdr(invoice.total!)
+                      : "-",
                   style: AppText.standardBold(),
                 ),
                 const SizedBox(
@@ -53,10 +61,11 @@ class TagihanItem extends StatelessWidget {
               ],
             ),
           ),
-          const Text(
-            "Terbayar",
+          Text(
+            invoice.isPaid == 1 ? "Terbayar" : "Belum Terbayar",
             style: TextStyle(
-              color: Color(0xFF219653),
+              color:
+                  invoice.isPaid == 1 ? Color(0xFF219653) : Color(0xFFEB5757),
               fontSize: 13,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,

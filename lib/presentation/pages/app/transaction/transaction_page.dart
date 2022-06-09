@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_jett_boilerplate/data/const/app_text.dart';
+import 'package:flutter_jett_boilerplate/domain/entities/transaction/transaaction.entity.dart';
+import 'package:flutter_jett_boilerplate/presentation/components/app_load_more.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/app/event/widgets/event_item.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/app/transaction/transaction_page.controller.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/app/transaction/widgets/transaction_item.dart';
@@ -21,16 +23,16 @@ class TransactionPage extends StatelessWidget {
               "Transaksi",
               style: AppText.titleBig(),
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            TransactionItem(),
-            TransactionItem(),
-            TransactionItem(),
-            TransactionItem(),
-            TransactionItem(),
-            TransactionItem(),
-            TransactionItem(),
+            AppLoadMore(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                onTap: () {},
+                itemWidget: (transactionJson) {
+                  return TransactionItem(
+                    transaction: TransactionEntity.fromJson(transactionJson),
+                  );
+                },
+                controller: TransactionPageController.to)
           ]),
         ),
       ),

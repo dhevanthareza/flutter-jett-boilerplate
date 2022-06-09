@@ -14,7 +14,7 @@ class EventItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed("/event/1");
+        Get.toNamed("/event/${event.id}");
       },
       child: Container(
         width: double.infinity,

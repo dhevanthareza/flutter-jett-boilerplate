@@ -1,7 +1,9 @@
 import 'package:flutter_jett_boilerplate/data/repositories/event.repository.dart';
 import 'package:flutter_jett_boilerplate/data/repositories/invoice.repository.dart';
 import 'package:flutter_jett_boilerplate/data/repositories/slider.repository.dart';
+import 'package:flutter_jett_boilerplate/data/repositories/user.repository.dart';
 import 'package:flutter_jett_boilerplate/domain/entities/auth/slider.entity.dart';
+import 'package:flutter_jett_boilerplate/domain/entities/auth/user.entity.dart';
 import 'package:flutter_jett_boilerplate/domain/entities/core/app_exception.dart';
 import 'package:flutter_jett_boilerplate/domain/entities/event/event.entity.dart';
 import 'package:flutter_jett_boilerplate/domain/entities/invoice/invoice.entity.dart';
@@ -10,6 +12,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 
 class HomePageController extends GetxController {
+  bool isFetchingUser = false;
+  UserEntity? user;
+
   bool isFetchingInvoice = false;
   List<InvoiceEntity> invoices = [];
 
@@ -26,6 +31,20 @@ class HomePageController extends GetxController {
     fethInvoice();
     fetchEvent();
     fetchSliders();
+    fetchUser();
+  }
+
+  void fetchUser() {
+    isFetchingUser = true;
+    update();
+    try {
+      user = UserRepository.getSavedUser();
+      isFetchingUser = false;
+      update();
+    } on AppException catch (err) {
+      isFetchingUser = false;
+      update();
+    }
   }
 
   void fethInvoice() async {

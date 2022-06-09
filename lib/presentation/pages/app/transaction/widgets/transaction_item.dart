@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_jett_boilerplate/data/const/app_text.dart';
+import 'package:flutter_jett_boilerplate/domain/entities/transaction/transaaction.entity.dart';
+import 'package:flutter_jett_boilerplate/utils/date_utils.dart';
+import 'package:flutter_jett_boilerplate/utils/string_utils.dart';
 
 class TransactionItem extends StatelessWidget {
-  const TransactionItem({Key? key}) : super(key: key);
+  final TransactionEntity transaction;
+  const TransactionItem({
+    Key? key,
+    required this.transaction,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +26,15 @@ class TransactionItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "EVENT",
-            style: AppText.titleSmallBold(color: Color(0xFF0093DD)),
-          ),
+          // Text(
+          //   "EVENT",
+          //   style: AppText.titleSmallBold(color: Color(0xFF0093DD)),
+          // ),
           const SizedBox(
             height: 3,
           ),
           Text(
-            "Pembayaran Workshop Radiologi Nasional",
+            StringUtils.getOrElse(transaction.uraian, "-"),
             style: AppText.standardBold(),
           ),
           const SizedBox(
@@ -37,11 +44,11 @@ class TransactionItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "28 / 09 / 2021",
+                transaction.paidAt != null ? AppDateUtils.formatFromString(transaction.paidAt, format: "dd / MM / yyyy") : "-",
                 style: AppText.titleSmall(),
               ),
               Text(
-                "Rp 250.000",
+                transaction.total != null ? StringUtils.toIdr(transaction.total!) : "-",
                 style: AppText.titleSmallBold(
                   color: const Color(0xFFFFAB00),
                 ),

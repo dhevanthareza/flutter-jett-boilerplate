@@ -21,7 +21,7 @@ class EventPageController extends GetxController
   int page = 0;
 
   @override
-  int total = 1;
+  int total = 0;
 
   @override
   void fetchInitialItems() async {
@@ -44,7 +44,6 @@ class EventPageController extends GetxController
   Future<void> fetchItems() async {
     page += 1;
     PaginateResponse response = await EventApi.fetchEvent(page: page);
-    print(response.rows.length);
     items = [...items, ...response.rows];
     total = response.total != null ? response.total as int : 0;
   }
