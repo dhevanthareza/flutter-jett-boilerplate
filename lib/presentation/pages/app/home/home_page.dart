@@ -1,6 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_jett_boilerplate/data/const/app_text.dart';
+import 'package:flutter_jett_boilerplate/domain/entities/auth/slider.entity.dart';
+import 'package:flutter_jett_boilerplate/domain/entities/event/event.entity.dart';
+import 'package:flutter_jett_boilerplate/domain/entities/invoice/invoice.entity.dart';
+import 'package:flutter_jett_boilerplate/presentation/pages/app/app_page.controller.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/app/home/home_page.controller.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/app/home/widgets/event_item.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/app/home/widgets/tagihan_item.dart';
@@ -73,14 +77,25 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        const Icon(Icons.mail_outline_rounded)
+        InkWell(
+          onTap: () {
+            state.handleNotificationClick();
+          },
+          child: const Icon(Icons.mail_outline_rounded),
+        )
       ],
     );
   }
 
   Widget _buildSlider(HomePageController state) {
     return CarouselSlider(
-      items: const [SliderItem()],
+      items: !state.isFetchingSliders ? state.sliders
+          .map(
+            (SliderEntity slider) => SliderItem(
+              slider: slider,
+            ),
+          )
+          .toList() : [SliderItem.buildShimmer()],
       options: CarouselOptions(
         aspectRatio: 263 / 111,
         initialPage: 0,
@@ -106,11 +121,16 @@ class HomePage extends StatelessWidget {
               "Tagihan",
               style: AppText.standardBold(),
             ),
-            Text(
-              "Lihat Semua",
-              style: AppText.titleSmallBold(
-                color: const Color(
-                  0xFF0093DD,
+            InkWell(
+              onTap: () {
+                state.goToTagihanPage();
+              },
+              child: Text(
+                "Lihat Semua",
+                style: AppText.titleSmallBold(
+                  color: const Color(
+                    0xFF0093DD,
+                  ),
                 ),
               ),
             ),
@@ -126,13 +146,18 @@ class HomePage extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                HomeTagihanItem(),
-                HomeTagihanItem(),
-                HomeTagihanItem(),
-                HomeTagihanItem(),
-                HomeTagihanItem()
-              ],
+              children: !state.isFetchingInvoice
+                  ? state.invoices
+                      .map(
+                        (InvoiceEntity invoice) =>
+                            HomeTagihanItem(invoice: invoice),
+                      )
+                      .toList()
+                  : List.generate(10, (index) => index)
+                      .map(
+                        (e) => HomeTagihanItem.buildShimmer(),
+                      )
+                      .toList(),
             ),
           ),
         )
@@ -151,11 +176,16 @@ class HomePage extends StatelessWidget {
               "Event Terdekat",
               style: AppText.standardBold(),
             ),
-            Text(
-              "Lihat Semua",
-              style: AppText.titleSmallBold(
-                color: const Color(
-                  0xFF0093DD,
+            InkWell(
+              onTap: () {
+                AppPageController.to.setMenuIndex(2);
+              },
+              child: Text(
+                "Lihat Semua",
+                style: AppText.titleSmallBold(
+                  color: const Color(
+                    0xFF0093DD,
+                  ),
                 ),
               ),
             ),
@@ -171,13 +201,17 @@ class HomePage extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                HomeEventItem(),
-                HomeEventItem(),
-                HomeEventItem(),
-                HomeEventItem(),
-                HomeEventItem(),
-              ],
+              children: !state.isFetchingEvents
+                  ? state.events
+                      .map(
+                        (EventEntity event) => HomeEventItem(
+                          event: event,
+                        ),
+                      )
+                      .toList()
+                  : List.generate(10, (i) => i)
+                      .map((e) => HomeEventItem.buildShimmer())
+                      .toList(),
             ),
           ),
         )

@@ -13,7 +13,7 @@ class LoginPageController extends GetxController {
   void handlLogin() async {
     showLoadingDialog();
     try {
-      // await UserService.login(memberNumberTextController.text, passwordTextController.text);
+      await UserService.login(memberNumberTextController.text, passwordTextController.text, "fcm_sample");
       Get.offAllNamed("/app");
       hideLoadingDialog();
     } on AppException catch (err) {

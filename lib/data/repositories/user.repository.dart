@@ -5,9 +5,9 @@ import 'package:flutter_jett_boilerplate/domain/entities/auth/user.entity.dart';
 import 'package:get_storage/get_storage.dart';
 
 class UserRepository {
-  static Future<AuthEntity> login(String email, String password) async {
+  static Future<AuthEntity> login(String email, String password, String fcm) async {
     return AuthEntity.fromJson(
-      (await UserApi.login(email, password)).data,
+      (await UserApi.login(email, password, fcm)).data,
     );
   }
 
@@ -27,5 +27,10 @@ class UserRepository {
       return null;
     }
     return UserEntity.fromJson(userJson);
+  }
+
+  static Future<void> clearUserData() async {
+    await GetStorage().remove(AppGetKey.USER);
+    await GetStorage().remove(AppGetKey.ACCESS_TOKEN);
   }
 }

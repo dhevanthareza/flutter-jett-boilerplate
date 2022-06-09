@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jett_boilerplate/domain/entities/event/event.entity.dart';
+import 'package:flutter_jett_boilerplate/presentation/components/app_load_more.dart';
+import 'package:flutter_jett_boilerplate/presentation/pages/app/event/detail/event_detail_page.controller.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/app/event/event_page.controller.dart';
 import 'package:flutter_jett_boilerplate/presentation/pages/app/event/widgets/event_item.dart';
 import 'package:get/get.dart';
@@ -23,14 +26,17 @@ class EventPage extends StatelessWidget {
                   "Event",
                   style: AppText.titleBig(),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-                EventItem(),
-                EventItem(),
-                EventItem(),
-                EventItem(),
-                EventItem(),
+                AppLoadMore<EventPageController>(
+                  // isNeedInit: false,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  onTap: () {},
+                  itemWidget: (eventJson) {
+                    EventEntity event = EventEntity.fromJson(eventJson);
+                    return EventItem(event: event,);
+                  },
+                  controller: EventPageController.to,
+                )
               ],
             ),
           ),

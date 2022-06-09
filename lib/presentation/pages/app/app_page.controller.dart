@@ -8,6 +8,7 @@ import 'package:flutter_jett_boilerplate/presentation/pages/app/transaction/widg
 import 'package:get/get.dart';
 
 class AppPageController extends GetxController {
+  static AppPageController get to => Get.find();
   int selectedMenuIndex = 0;
   List<Widget> menus = [
     HomePage(),

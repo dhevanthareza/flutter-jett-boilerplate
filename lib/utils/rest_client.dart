@@ -15,7 +15,7 @@ class RestClient {
         headers: {"Accept": "application/json"},
         connectTimeout: 30000,
         receiveTimeout: 30000,
-        baseUrl: '${AppConfig.gateway}/api',
+        baseUrl: '${AppConfig.gateway}',
       ),
     );
     dio.interceptors.add(
@@ -37,7 +37,7 @@ class RestClient {
     if (response == null) {
       throw AppException(message: 'Tidak dapat terkoneksi dengan API');
     }
-    _handleResponse(response);
+    return _handleResponse(response);
   }
 
   static dynamic _returnErr(DioError err) {
@@ -49,7 +49,7 @@ class RestClient {
       throw AppException(
           message: response.data['error']['message'] ?? 'Undefined Error 500');
     }
-    _handleResponse(response);
+    return _handleResponse(response);
   }
 
   static _handleResponse(Response response) {
@@ -100,6 +100,7 @@ class RestClient {
       dynamic response =
           await _client.get(url, queryParameters: queryParameter);
       responseJson = _returnResponse(response);
+      return responseJson;
     } on SocketException {
       throw AppException(message: 'No Internet connection');
     } on DioError catch (err) {
@@ -130,6 +131,7 @@ class RestClient {
       Dio _client = await client();
       response = await _client.patch(url, data: data);
       responseJson = _returnResponse(response);
+      return responseJson;
     } on SocketException {
       throw AppException(message: 'No Internet connection');
     } on DioError catch (err) {
@@ -145,6 +147,7 @@ class RestClient {
       Dio _client = await client();
       response = await _client.delete(url, data: data);
       responseJson = _returnResponse(response);
+      return responseJson;
     } on SocketException {
       throw AppException(message: 'No Internet connection');
     } on DioError catch (err) {
